@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "rewrites": [{ "source": "/os/((?!assets/).*)", "destination": "/os/index.html" }],
   "headers": [
     {
       "source": "/(.*)",
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "source": "/assets/(.*)",
+      "source": "/os/assets/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
   ]
