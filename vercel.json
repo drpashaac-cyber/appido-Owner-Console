@@ -1,7 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "redirects": [{ "source": "/os", "destination": "/" }],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "rewrites": [
+    { "source": "/os/assets/:path*", "destination": "/os/assets/:path*" },
+    { "source": "/os/:path*", "destination": "/os/index.html" },
+    { "source": "/", "destination": "/os/index.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -15,7 +18,7 @@
       ]
     },
     {
-      "source": "/assets/(.*)",
+      "source": "/os/assets/:path*",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
   ]

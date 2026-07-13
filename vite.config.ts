@@ -1,10 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// APPIDO owner console — modular SPA build.
 export default defineConfig({
   plugins: [react()],
-  base: "/",
+  base: "/os",
   build: {
     target: "es2020",
     outDir: "dist",
