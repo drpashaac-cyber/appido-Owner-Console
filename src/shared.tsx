@@ -25,6 +25,7 @@ export function LoginGate({ t, live, auth, onAuthed }: { t: Dict; live?: boolean
   const [cool, setCool] = useState(0);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
+  const [showPwd, setShowPwd] = useState(false);
   useEffect(() => { if (cool <= 0) return; const id = setTimeout(() => setCool(cool - 1), 1000); return () => clearTimeout(id); }, [cool]);
 
   // After a session is established, confirm the account may use the owner console.
@@ -81,8 +82,16 @@ export function LoginGate({ t, live, auth, onAuthed }: { t: Dict; live?: boolean
         )}
         {step === "password" && (
           <>
-            <Field label={L.pwdLbl}><input className="oc-input" type="password" value={pwd} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPwd(e.target.value)} /></Field>
+            <Field label={L.pwdLbl}>
+              <div style={{ position: "relative" }}>
+                <input className="oc-input" type={showPwd ? "text" : "password"} value={pwd} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPwd(e.target.value)} style={{ paddingInlineEnd: 38 }} />
+                <button type="button" onClick={() => setShowPwd(!showPwd)} style={{ position: "absolute", insetInlineEnd: 10, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", padding: 0, color: "inherit", opacity: 0.6 }}>
+                  {showPwd ? <Icon name="eye-off" size={16} /> : <Icon name="eye" size={16} />}
+                </button>
+              </div>
+            </Field>
             <button className="oc-btn green oc-login-btn" disabled={!pwd || busy} onClick={doPassword}>{L.signin}</button>
+            <button type="button" style={{ background: "none", border: "none", cursor: "pointer", fontSize: 12, color: "inherit", opacity: 0.65, marginTop: 4, padding: 0 }} onClick={() => { if (live && auth) { guard(async () => { await auth.ensureCsrf(); await auth.loginStart(email); setVia("code"); setCool(30); setStep("code"); setBusy(false); }); } else { setVia("code"); setCool(30); setStep("code"); } }}>Forgot password?</button>
             <button className="oc-login-back" onClick={() => setStep("pick")}><Icon name="back" size={14} /> {L.back}</button>
           </>
         )}

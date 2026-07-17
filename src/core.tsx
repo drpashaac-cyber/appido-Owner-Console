@@ -3,6 +3,8 @@ import { fmt } from "./lib";
 import type { Lang, ChartDatum, HeatCol, HeatRow, AppData } from "./types";
 
 export const P: Record<string, string> = {
+  eye: "M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z M12 12m-3 0a3 3 0 1 0 6 0 3 3 0 1 0-6 0",
+  "eye-off": "M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24 M1 1l22 22",
   home: "M3 11l9-8 9 8M5 9.5V21h14V9.5", tenants: "M3 21V7l6-4 6 4v14M9 21v-5h2v5M15 11h3v10",
   customers: "M16 21v-2a4 4 0 0 0-8 0v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8", revenue: "M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6",
   intel: "M3 17l5-5 4 4 8-9M14 7h7v7", strategist: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4",
